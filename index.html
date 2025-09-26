@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="cheqprint">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>cheqprint</title>
+  <link rel="manifest" href="manifest.json">
+    <style>
+    /* Style pour l'écran de chargement */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Roboto', sans-serif;
+    }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #2196F3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .loading-subtext {
+      color: #999;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+   <!-- Écran de chargement affiché pendant que Flutter se charge -->
+  <div id="loading" class="loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Chargement de CheqPrint...</div>
+    <div class="loading-subtext">Impression de chèques professionnelle</div>
+  </div>
+
+  <script>
+    // Configuration pour la gestion des routes Flutter sur le web
+    window.addEventListener('load', function(ev) {
+      // Supprimer l'écran de chargement une fois Flutter chargé
+      const loadingElement = document.getElementById('loading');
+      if (loadingElement) {
+        loadingElement.style.display = 'none';
+      }
+    });
+
+    // Gérer les liens de récupération de mot de passe
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      
+      // Vérifier si c'est un lien de récupération de mot de passe
+      const isRecovery = urlParams.get('type') === 'recovery' || 
+                        hashParams.get('type') === 'recovery' ||
+                        window.location.hash.includes('type=recovery');
+      
+      if (isRecovery) {
+        console.log('Lien de récupération de mot de passe détecté');
+        // Flutter gérera automatiquement la redirection via onAuthStateChange
+      }
+    });
+
+    
+  </script>
+  
+  <script src="flutter.js" defer></script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
