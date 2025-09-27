@@ -51501,11 +51501,11 @@ b.toString
 b=A.am(24,b)
 s=A.j(242,B.m.i()>>>16&255,B.m.i()>>>8&255,B.m.i()&255)
 r=A.j(51,B.j.i()>>>16&255,B.j.i()>>>8&255,B.j.i()&255)
-q=d.CJ(B.iK,"+225 27 20 30 40 50")
+q=d.CJ(B.iK,"+225 01 43 84 88 21")
 p=d.c
 p.toString
 p=A.a9(c,A.am(8,p),c)
-o=d.CJ(B.iH,"contact@cheqprint.ci")
+o=d.CJ(B.iH,"contact@cheqprint.com")
 n=d.c
 n.toString
 n=A.a9(c,A.am(8,n),c)
@@ -52073,9 +52073,9 @@ q=b?100:150
 r=A.b0m("assets/images/logo.png",new A.aJw(b),B.i6,q,r)
 q=A.a9(g,A.am(16,a),g)
 b=this.a
-p=A.a9(b.KG(B.iK,"+225 27 20 30 40 50"),g,d)
+p=A.a9(b.KG(B.iK,"+225 01 43 84 88 21"),g,d)
 o=A.a9(g,A.am(16,a),g)
-n=A.a9(b.KG(B.iH,"contact@cheqprint.ci"),g,d)
+n=A.a9(b.KG(B.iH,"contact@cheqprint.com"),g,d)
 m=A.a9(g,A.am(16,a),g)
 l=A.a9(b.KG(B.ha,"Abidjan, C\xf4te d'Ivoire"),g,d)
 k=A.a9(g,A.am(24,a),g)
