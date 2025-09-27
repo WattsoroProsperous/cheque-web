@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cheqprint.com/sitemap.xml
+
+# Bloquer l'accès aux dossiers techniques
+Disallow: /build/
+Disallow: /assets/packages/
+Disallow: /canvaskit/
+
+# Permettre l'indexation des pages importantes
+Allow: /auth
+Allow: /home
+Allow: /restart
+Allow: /update-password
+Allow: /paid_print
