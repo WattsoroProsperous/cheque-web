@@ -1,0 +1,91 @@
+# Nom de votre workflow
+name: Flutter CI/CD
+
+# Quand le workflow est déclenché
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Les tâches (jobs) à exécuter
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Étape 1 : Cloner le dépôt
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Étape 2 : Mettre en place l'environnement Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: '3.24.0'
+
+      # Étape 3 : Vérifier la version de Flutter installée
+      - name: Verify Flutter installation
+        run: |
+          flutter --version
+          flutter doctor -v
+
+      # Étape 4 : Installer les dépendances du projet
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Étape 5 : Analyser le code (continue même s'il y a des warnings)
+      - name: Analyze code
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        continue-on-error: true
+
+      # Étape 6 : Exécuter les tests (facultatif mais recommandé)
+      - name: Run tests
+        run: flutter test
+        continue-on-error: true
+
+      # Étape 7 : Construire l'application pour la production (web)
+      - name: Build web release
+        run: |
+          flutter build web --release --web-renderer html \
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+
+      # Étape 8 : Copier les fichiers SEO
+      - name: Copy SEO files
+        run: |
+          if [ -f "web/sitemap.xml" ]; then
+            cp web/sitemap.xml build/web/
+            echo "✅ sitemap.xml copié"
+          else
+            echo "⚠️ sitemap.xml non trouvé"
+          fi
+          
+          if [ -f "web/robots.txt" ]; then
+            cp web/robots.txt build/web/
+            echo "✅ robots.txt copié"
+          else
+            echo "⚠️ robots.txt non trouvé"
+          fi
+
+      # Étape 9 : Déployer sur Vercel (seulement pour les push sur main)
+      - name: Deploy to Vercel
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          working-directory: ./build/web
+          vercel-args: '--prod'
+
+      # Étape 10 : Upload les fichiers de build en tant qu'artefact (pour debug)
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-build-web
+          path: build/webMai
