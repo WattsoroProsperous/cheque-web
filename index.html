@@ -1,37 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>cheqprint - Impression de chèques professionnelle en ligne</title>
+  <meta name="description" content="cheqprint est votre solution professionnelle pour l'impression de chèques en ligne. Sécurisé, rapide et conforme aux normes bancaires. Essayez gratuitement !">
+  <meta name="keywords" content="impression chèque, chèque professionnel, impression en ligne, cheqprint, chèque bancaire, solution impression">
+  <meta name="author" content="cheqprint">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="French">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cheqprint.com/">
+  <meta property="og:title" content="cheqprint - Impression de chèques professionnelle">
+  <meta property="og:description" content="Solution professionnelle pour l'impression de chèques en ligne. Sécurisé et conforme aux normes bancaires.">
+  <meta property="og:image" content="https://cheqprint.com/images/og-image.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="cheqprint">
 
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://cheqprint.com/">
+  <meta property="twitter:title" content="cheqprint - Impression de chèques professionnelle">
+  <meta property="twitter:description" content="Solution professionnelle pour l'impression de chèques en ligne. Sécurisé et conforme aux normes bancaires.">
+  <meta property="twitter:image" content="https://cheqprint.com/images/twitter-image.jpg">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://cheqprint.com/">
+  
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="cheqprint">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/Icon-152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/Icon-180.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
 
-  <title>cheqprint</title>
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
-    <style>
+  <meta name="theme-color" content="#2196F3">
+
+  <!-- Preconnect to improve performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "cheqprint,
+    "url": "https://cheqprint.com",
+    "description": "Solution professionnelle pour l'impression de chèques en ligne",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "category": "Service"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Mainsou ESN"
+    }
+  }
+  </script>
+
+  <style>
     /* Style pour l'écran de chargement */
     .loading {
       display: flex;
@@ -40,6 +85,7 @@
       justify-content: center;
       height: 100vh;
       font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
     }
     .loading-spinner {
       width: 40px;
@@ -55,28 +101,55 @@
       100% { transform: rotate(360deg); }
     }
     .loading-text {
-      color: #666;
-      font-size: 16px;
+      color: #333;
+      font-size: 18px;
       margin-bottom: 8px;
+      font-weight: 500;
     }
     .loading-subtext {
-      color: #999;
+      color: #666;
       font-size: 14px;
+      text-align: center;
+      max-width: 300px;
+    }
+    
+    /* Noscript fallback */
+    noscript {
+      display: block;
+      padding: 20px;
+      text-align: center;
+      background-color: #fff3cd;
+      border: 1px solid #ffeaa7;
+      margin: 20px;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-   <!-- Écran de chargement affiché pendant que Flutter se charge -->
+  <!-- Noscript fallback for SEO -->
+  <noscript>
+    <h1>cheqprint - Impression de chèques professionnelle</h1>
+    <p>cheqprint est votre solution professionnelle pour l'impression de chèques en ligne. 
+    Pour utiliser cette application, veuillez activer JavaScript dans votre navigateur.</p>
+    <p>Fonctionnalités principales :</p>
+    <ul>
+      <li>Impression sécurisée de chèques</li>
+      <li>Conformité aux normes bancaires</li>
+      <li>Interface intuitive et professionnelle</li>
+      <li>Sauvegarde sécurisée de vos données</li>
+    </ul>
+  </noscript>
+
+  <!-- Écran de chargement -->
   <div id="loading" class="loading">
     <div class="loading-spinner"></div>
-    <div class="loading-text">Chargement de CheqPrint...</div>
-    <div class="loading-subtext">Impression de chèques professionnelle</div>
+    <div class="loading-text">Chargement de cheqprint...</div>
+    <div class="loading-subtext">Votre solution professionnelle d'impression de chèques</div>
   </div>
 
   <script>
     // Configuration pour la gestion des routes Flutter sur le web
     window.addEventListener('load', function(ev) {
-      // Supprimer l'écran de chargement une fois Flutter chargé
       const loadingElement = document.getElementById('loading');
       if (loadingElement) {
         loadingElement.style.display = 'none';
@@ -88,18 +161,14 @@
       const urlParams = new URLSearchParams(window.location.search);
       const hashParams = new URLSearchParams(window.location.hash.substring(1));
       
-      // Vérifier si c'est un lien de récupération de mot de passe
       const isRecovery = urlParams.get('type') === 'recovery' || 
                         hashParams.get('type') === 'recovery' ||
                         window.location.hash.includes('type=recovery');
       
       if (isRecovery) {
         console.log('Lien de récupération de mot de passe détecté');
-        // Flutter gérera automatiquement la redirection via onAuthStateChange
       }
     });
-
-    
   </script>
   
   <script src="flutter.js" defer></script>
