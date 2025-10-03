@@ -1,0 +1,61 @@
+# Nom de votre workflow
+name: Flutter CI/CD
+
+# Quand le workflow est déclenché
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Les tâches (jobs) à exécuter
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Étape 1 : Cloner le dépôt
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Étape 2 : Mettre en place l'environnement Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      # Étape 3 : Vérifier la version de Flutter installée
+      - name: Verify Flutter installation
+        run: |
+          flutter --version
+          flutter doctor -v
+
+      # Étape 4 : Installer les dépendances du projet
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Étape 5 : Analyser le code (continue même s'il y a des warnings)
+      - name: Analyze code
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        continue-on-error: true
+
+      # Étape 6 : Exécuter les tests (facultatif mais recommandé)
+      - name: Run tests
+        run: flutter test
+        continue-on-error: true
+
+      # Étape 7 : Construire l'application pour la production (web)
+      - name: Build web release
+        run: |
+          flutter build web --release \
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+
+      # Étape 8 : Upload les fichiers de build en tant qu'artefact
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-build-web
+          path: build/web
