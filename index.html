@@ -60,7 +60,7 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "cheqprint,
+    "name": "cheqprint",
     "url": "https://cheqprint.com",
     "description": "Solution professionnelle pour l'impression de chèques en ligne",
     "applicationCategory": "BusinessApplication",
@@ -77,42 +77,6 @@
   </script>
 
   <style>
-    /* Style pour l'écran de chargement */
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f5f5f5;
-    }
-    .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #2196F3;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .loading-text {
-      color: #333;
-      font-size: 18px;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-    .loading-subtext {
-      color: #666;
-      font-size: 14px;
-      text-align: center;
-      max-width: 300px;
-    }
-    
     /* Noscript fallback */
     noscript {
       display: block;
@@ -139,13 +103,6 @@
       <li>Sauvegarde sécurisée de vos données</li>
     </ul>
   </noscript>
-
-  <!-- Écran de chargement -->
-  <div id="loading" class="loading">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Chargement de cheqprint...</div>
-    <div class="loading-subtext">Votre solution professionnelle d'impression de chèques</div>
-  </div>
 
   <script>
     // Configuration pour la gestion des routes Flutter sur le web
