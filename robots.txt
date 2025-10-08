@@ -1,18 +1,12 @@
 User-agent: *
 Allow: /
+
 # Sitemap
 Sitemap: https://cheqprint.com/sitemap.xml
 
-# Bloquer l'accès aux dossiers techniques (non critiques)
+# Bloquer l'accès aux dossiers techniques
 Disallow: /build/
 Disallow: /canvaskit/
 
-# Autoriser le répertoire assets/packages/ car il contient des ressources essentielles (CSS/JS/Fonts)
-Allow: /assets/packages/
-
-# Permettre l'indexation des pages importantes (ces lignes ne sont plus nécessaires avec le Allow ci-dessus si ces pages ne sont pas dans les dossiers bloqués)
-Allow: /auth
-Allow: /home
-Allow: /restart
-Allow: /update-password
-Allow: /paid_print
+# Autoriser les ressources essentielles
+Allow: /assets/
