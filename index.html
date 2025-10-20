@@ -77,42 +77,6 @@
   </script>
 
   <style>
-    /* Style pour l'écran de chargement */
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f5f5f5;
-    }
-    .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #2196F3;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .loading-text {
-      color: #333;
-      font-size: 18px;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-    .loading-subtext {
-      color: #666;
-      font-size: 14px;
-      text-align: center;
-      max-width: 300px;
-    }
-    
     /* Noscript fallback */
     noscript {
       display: block;
@@ -139,14 +103,6 @@
       <li>Sauvegarde sécurisée de vos données</li>
     </ul>
   </noscript>
-
-  <!-- Écran de chargement -->
-  <div id="loading" class="loading">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Chargement de cheqprint...</div>
-    <div class="loading-subtext">Votre solution professionnelle d'impression de chèques</div>
-  </div>
-
   <script>
     // Configuration pour la gestion des routes Flutter sur le web
     window.addEventListener('load', function(ev) {
@@ -171,6 +127,91 @@
     });
   </script>
   
+    <!-- ÉTAPE 1 : Initialisation immédiate -->
+  <script>
+    window.ocrResults = {};
+    window.ocrReady = false;
+    console.log('✅ window.ocrResults initialisé');
+  </script>
+
+  <!-- ÉTAPE 2 : Charger PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+
+  <!-- ÉTAPE 3 : Charger Tesseract.js -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <!-- ÉTAPE 4 : Fonctions OCR -->
+  <script>
+    // Fonction pour convertir PDF en image
+    window.pdfToImage = async function(pdfData) {
+      console.log('📄 Conversion PDF en image...');
+      try {
+        const loadingTask = pdfjsLib.getDocument({ data: pdfData });
+        const pdf = await loadingTask.promise;
+        console.log(`📄 PDF chargé: ${pdf.numPages} page(s)`);
+        
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 2.0 });
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        await page.render({ canvasContext: context, viewport: viewport }).promise;
+        console.log('✅ PDF converti en image');
+        return canvas;
+      } catch (error) {
+        console.error('❌ Erreur conversion PDF:', error);
+        throw error;
+      }
+    };
+    
+    // Fonction OCR principale
+    window.performTesseractOCR = function(requestId, imageData, languages) {
+      console.log(`🔍 Début OCR Tesseract.js [${requestId}]...`);
+      window.ocrResults[requestId] = { status: 'processing' };
+      
+      (async () => {
+        try {
+          let inputImage = imageData;
+          
+          if (typeof imageData === 'string' && imageData.startsWith('data:application/pdf')) {
+            console.log('📄 PDF détecté, conversion en image...');
+            const base64Data = imageData.split(',')[1];
+            const pdfBytes = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+            const canvas = await window.pdfToImage(pdfBytes);
+            inputImage = canvas;
+          }
+          
+          const worker = await Tesseract.createWorker(languages, 1, {
+            logger: m => {
+              if (m.status === 'recognizing text') {
+                const progress = Math.round(m.progress * 100);
+                console.log(`📊 Progression OCR [${requestId}]: ${progress}%`);
+              }
+            }
+          });
+          
+          const { data: { text, confidence } } = await worker.recognize(inputImage);
+          await worker.terminate();
+          
+          console.log(`✅ OCR terminé [${requestId}]: ${text.length} caractères (confiance: ${confidence.toFixed(2)}%)`);
+          
+          window.ocrResults[requestId] = { status: 'success', text: text, confidence: confidence };
+        } catch (error) {
+          console.error(`❌ Erreur OCR [${requestId}]:`, error);
+          window.ocrResults[requestId] = { status: 'error', error: error.message || String(error) };
+        }
+      })();
+    };
+    
+    window.ocrReady = true;
+    console.log('✅ Fonctions OCR chargées (PDF + Images)');
+  </script>
+
   <script src="flutter.js" defer></script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
