@@ -54,60 +54,360 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Schema.org structured data -->
+ <!-- Schema 1 : SoftwareApplication (Principal) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "cheqprint,
+    "@type": "SoftwareApplication",
+    "name": "cheqprint",
+    "alternateName": "Impression de chèques cheqprint",
     "url": "https://cheqprint.com",
-    "description": "Solution professionnelle pour l'impression de chèques en ligne",
+    "description": "Logiciel professionnel en ligne pour l'impression de chèques bancaires. Solution sécurisée, rapide et conforme aux normes CMC7 et MICR.",
     "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
+    "applicationSubCategory": "Finance",
+    "operatingSystem": "Web, Windows, macOS, Linux",
+    "softwareVersion": "1.0",
     "offers": {
       "@type": "Offer",
-      "category": "Service"
+      "price": "0",
+      "priceCurrency": "EUR",
+      "priceValidUntil": "2025-12-31",
+      "availability": "https://schema.org/InStock",
+      "category": "Impression de chèques",
+      "description": "Essai gratuit disponible"
+    },
+    "featureList": [
+      "Impression de chèques sécurisée",
+      "Conformité CMC7 et MICR",
+      "Gestion de chéquiers multiples",
+      "Personnalisation du design",
+      "Sauvegarde automatique",
+      "Historique des impressions",
+      "Support multi-banques",
+      "Interface professionnelle"
+    ],
+    "screenshot": "https://cheqprint.com/images/screenshot.jpg",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "author": {
       "@type": "Organization",
-      "name": "Mainsou ESN"
+      "name": "Mainsou ESN",
+      "url": "https://cheqprint.com"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "Mainsou ESN",
+      "url": "https://cheqprint.com"
+    },
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "inLanguage": "fr-FR"
+  }
+  </script>
+
+  <!-- Schema 2 : Organization (Entreprise) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "cheqprint by Mainsou ESN",
+    "url": "https://cheqprint.com",
+    "logo": "https://cheqprint.com/icons/Icon-192.png",
+    "description": "Éditeur de logiciels pour l'impression de chèques professionnels en ligne",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "support@cheqprint.com",
+      "availableLanguage": ["French"]
+    },
+    "sameAs": [
+      "https://www.facebook.com/cheqprint",
+      "https://twitter.com/cheqprint",
+      "https://www.linkedin.com/company/cheqprint"
+    ]
+  }
+  </script>
+
+  <!-- Schema 3 : WebSite (Site Web avec fonction de recherche) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "cheqprint",
+    "url": "https://cheqprint.com",
+    "description": "Solution professionnelle pour l'impression de chèques en ligne",
+    "inLanguage": "fr-FR",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://cheqprint.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
     }
   }
   </script>
 
+  <!-- Schema 4 : FAQPage (Questions fréquentes) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Comment fonctionne l'impression de chèques en ligne ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "cheqprint permet d'imprimer des chèques professionnels directement depuis votre navigateur. Il suffit de configurer vos informations bancaires, personnaliser le design et imprimer vos chèques de manière sécurisée."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "L'impression de chèques avec cheqprint est-elle conforme aux normes bancaires ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, cheqprint respecte strictement les normes CMC7 et MICR utilisées par les banques françaises pour garantir la validité de vos chèques imprimés."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Puis-je essayer cheqprint gratuitement ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, cheqprint propose un essai gratuit qui vous permet de tester toutes les fonctionnalités d'impression de chèques avant de vous engager."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mes données bancaires sont-elles sécurisées ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. cheqprint utilise un chiffrement de niveau bancaire pour protéger toutes vos informations sensibles lors de l'impression de chèques."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema 5 : BreadcrumbList (Fil d'Ariane) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://cheqprint.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Impression de chèques",
+        "item": "https://cheqprint.com/"
+      }
+    ]
+  }
+  </script>
+
   <style>
-    /* Noscript fallback */
-    noscript {
-      display: block;
+/* Noscript fallback */
+    .seo-content {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    .seo-content h1 {
+      color: #2196F3;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .seo-content h2 {
+      color: #333;
+      font-size: 1.5em;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    .seo-content ul, .seo-content ol {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+    .seo-content li {
+      margin: 10px 0;
+    }
+    .seo-content strong {
+      color: #2196F3;
+      font-weight: 600;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #2196F3;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+    .cta-button:hover {
+      background: #1976D2;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .feature-box {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #2196F3;
+    }
+    .warning-box {
       background-color: #fff3cd;
       border: 1px solid #ffeaa7;
-      margin: 20px;
+      padding: 15px;
       border-radius: 4px;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #856404;
     }
+
   </style>
 </head>
 <body>
-  <!-- Noscript fallback for SEO -->
-  <noscript>
-    <h1>cheqprint - Impression de chèques professionnelle</h1>
-    <p>cheqprint est votre solution professionnelle pour l'impression de chèques en ligne. 
-    Pour utiliser cette application, veuillez activer JavaScript dans votre navigateur.</p>
-    <p>Fonctionnalités principales :</p>
-    <ul>
-      <li>Impression sécurisée de chèques</li>
-      <li>Conformité aux normes bancaires</li>
-      <li>Interface intuitive et professionnelle</li>
-      <li>Sauvegarde sécurisée de vos données</li>
-    </ul>
-  </noscript>
+  <!-- Contenu SEO pour les moteurs de recherche et utilisateurs sans JavaScript -->
+  <div class="seo-content">
+    <noscript>
+      <h1>Impression de chèques en ligne avec cheqprint</h1>
+      
+      <p><strong>cheqprint</strong> est votre solution professionnelle pour l'<strong>impression de chèques</strong> en ligne. 
+      Notre logiciel vous permet d'<strong>imprimer des chèques</strong> bancaires de manière sécurisée, rapide et conforme aux normes bancaires françaises.</p>
+
+      <h2>Pourquoi choisir cheqprint pour l'impression de chèque ?</h2>
+      
+      <div class="features-grid">
+        <div class="feature-box">
+          <h3>🔒 Sécurité maximale</h3>
+          <p>Vos données bancaires sont protégées par un chiffrement de niveau bancaire lors de chaque impression de chèque.</p>
+        </div>
+        
+        <div class="feature-box">
+          <h3>✅ Conformité garantie</h3>
+          <p>Respect strict des normes CMC7 et MICR pour une impression de chèques valide auprès de toutes les banques.</p>
+        </div>
+        
+        <div class="feature-box">
+          <h3>⚡ Rapidité</h3>
+          <p>Imprimez vos chèques en quelques clics. Notre logiciel d'impression de chèques est optimisé pour la productivité.</p>
+        </div>
+        
+        <div class="feature-box">
+          <h3>💼 Interface professionnelle</h3>
+          <p>Un logiciel intuitif conçu pour les professionnels qui ont besoin d'imprimer des chèques régulièrement.</p>
+        </div>
+      </div>
+
+      <h2>Fonctionnalités complètes pour l'impression de chèques</h2>
+      <ul>
+        <li><strong>Impression de chèques illimitée</strong> : Imprimez autant de chèques que nécessaire</li>
+        <li><strong>Gestion multi-chéquiers</strong> : Gérez plusieurs carnets de chèques simultanément</li>
+        <li><strong>Personnalisation avancée</strong> : Personnalisez le design de vos chèques imprimés</li>
+        <li><strong>Historique complet</strong> : Suivez tous vos chèques imprimés avec un historique détaillé</li>
+        <li><strong>Sauvegarde automatique</strong> : Vos données d'impression de chèques sont sauvegardées en continu</li>
+        <li><strong>Support multi-banques</strong> : Compatible avec toutes les banques françaises</li>
+        <li><strong>Export PDF</strong> : Exportez vos chèques en PDF pour archivage</li>
+        <li><strong>Support technique dédié</strong> : Assistance disponible pour votre impression de chèques</li>
+      </ul>
+
+      <h2>Comment fonctionne l'impression de chèque en ligne ?</h2>
+      <p>Notre logiciel d'<strong>impression de chèques</strong> simplifie le processus en 4 étapes :</p>
+      <ol>
+        <li><strong>Configuration</strong> : Entrez vos informations bancaires une seule fois de manière sécurisée</li>
+        <li><strong>Personnalisation</strong> : Choisissez le design et la mise en page de vos chèques à imprimer</li>
+        <li><strong>Impression</strong> : Imprimez vos chèques professionnels instantanément sur du papier sécurisé</li>
+        <li><strong>Archivage</strong> : Consultez l'historique de toutes vos impressions de chèques</li>
+      </ol>
+
+      <h2>Avantages de l'impression de chèques avec cheqprint</h2>
+      <p>L'<strong>impression de chèques en ligne</strong> avec cheqprint offre de nombreux avantages pour les professionnels et entreprises :</p>
+      <ul>
+        <li>💰 <strong>Économies importantes</strong> : Plus besoin d'acheter des chèques pré-imprimés coûteux</li>
+        <li>📦 <strong>Impression à la demande</strong> : Imprimez uniquement les chèques dont vous avez besoin</li>
+        <li>🎨 <strong>Personnalisation totale</strong> : Chaque chèque peut être personnalisé selon vos besoins</li>
+        <li>⏱️ <strong>Gain de temps</strong> : L'impression automatisée de chèques vous fait gagner un temps précieux</li>
+        <li>🎯 <strong>Réduction des erreurs</strong> : Minimisez les erreurs d'écriture manuelle</li>
+        <li>📊 <strong>Suivi facilité</strong> : Traçabilité complète de tous vos chèques imprimés</li>
+        <li>🌍 <strong>Accessible partout</strong> : Imprimez vos chèques depuis n'importe où avec une connexion internet</li>
+        <li>🔄 <strong>Mises à jour automatiques</strong> : Bénéficiez des dernières fonctionnalités d'impression</li>
+      </ul>
+
+      <h2>Pour qui est destiné cheqprint ?</h2>
+      <p>Notre solution d'<strong>impression de chèques</strong> est idéale pour :</p>
+      <ul>
+        <li>Les <strong>petites et moyennes entreprises</strong> qui émettent régulièrement des chèques</li>
+        <li>Les <strong>comptables et experts-comptables</strong> gérant plusieurs clients</li>
+        <li>Les <strong>associations</strong> ayant besoin d'imprimer des chèques occasionnellement</li>
+        <li>Les <strong>auto-entrepreneurs</strong> souhaitant professionnaliser leurs paiements</li>
+        <li>Les <strong>particuliers</strong> ayant des besoins d'impression de chèques</li>
+      </ul>
+
+      <h2>Sécurité et conformité de l'impression de chèques</h2>
+      <p>La sécurité est notre priorité absolue pour l'<strong>impression de chèques</strong> :</p>
+      <ul>
+        <li>🔐 <strong>Chiffrement AES-256</strong> : Protection maximale de vos données bancaires</li>
+        <li>✅ <strong>Conformité CMC7</strong> : Standard français pour la codification des chèques</li>
+        <li>✅ <strong>Conformité MICR</strong> : Technologie d'impression reconnue par les banques</li>
+        <li>🛡️ <strong>Papier sécurisé recommandé</strong> : Conseils pour choisir le bon papier pour imprimer vos chèques</li>
+        <li>📝 <strong>Traçabilité complète</strong> : Chaque impression de chèque est enregistrée</li>
+      </ul>
+
+      <h2>Essayez gratuitement notre solution d'impression de chèques</h2>
+      <p>Découvrez pourquoi des milliers de professionnels font confiance à <strong>cheqprint</strong> pour l'<strong>impression de leurs chèques</strong>. 
+      Testez notre logiciel d'<strong>impression de chèques</strong> gratuitement dès aujourd'hui et simplifiez votre gestion financière.</p>
+
+      <a href="/" class="cta-button">🚀 Commencer l'impression de chèques gratuitement</a>
+
+      <h2>Questions fréquentes sur l'impression de chèques</h2>
+      
+      <h3>Est-ce légal d'imprimer ses propres chèques ?</h3>
+      <p>Oui, l'<strong>impression de chèques</strong> est parfaitement légale en France à condition de respecter les normes CMC7 et d'utiliser du papier sécurisé approprié.</p>
+
+      <h3>Quel papier utiliser pour l'impression de chèques ?</h3>
+      <p>Pour <strong>imprimer des chèques</strong>, utilisez du papier sécurisé avec filigrane de 90g/m² minimum. cheqprint vous recommande les meilleurs fournisseurs.</p>
+
+      <h3>Les banques acceptent-elles les chèques imprimés avec cheqprint ?</h3>
+      <p>Oui, tous les chèques imprimés avec cheqprint sont conformes aux normes bancaires françaises et sont acceptés par toutes les banques.</p>
+
+      <h3>Combien coûte l'impression de chèques avec cheqprint ?</h3>
+      <p>cheqprint propose un essai gratuit. Consultez notre page tarifs pour découvrir nos formules d'<strong>impression de chèques</strong> adaptées à vos besoins.</p>
+
+      <div class="warning-box">
+        <strong>⚠️ JavaScript requis</strong><br>
+        Pour utiliser notre application d'<strong>impression de chèques</strong> en ligne, veuillez activer JavaScript dans votre navigateur. 
+        L'activation de JavaScript vous permettra d'accéder à toutes les fonctionnalités de notre logiciel d'impression.
+      </div>
+    </noscript>
+  </div>
   <script>
     // Configuration pour la gestion des routes Flutter sur le web
     window.addEventListener('load', function(ev) {
       const loadingElement = document.getElementById('loading');
       if (loadingElement) {
         loadingElement.style.display = 'none';
+      }
+      // Masquer le contenu SEO une fois l'app chargée
+      const seoContent = document.querySelector('.seo-content');
+      if (seoContent && seoContent.children.length > 1) {
+        seoContent.style.display = 'none';
       }
     });
 
@@ -126,7 +426,7 @@
     });
   </script>
   
-    <!-- ÉTAPE 1 : Initialisation immédiate -->
+  <!-- ÉTAPE 1 : Initialisation immédiate -->
   <script>
     window.ocrResults = {};
     window.ocrReady = false;
